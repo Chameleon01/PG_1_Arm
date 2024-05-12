@@ -1,0 +1,225 @@
+<?xml version="1.0" ?>
+<robot name="PutArm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find PutArm_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find PutArm_description)/urdf/PutArm.trans" />
+<xacro:include filename="$(find PutArm_description)/urdf/PutArm.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.09564368830443622 0.0012112707272121106 0.05097667978773091" rpy="0 0 0"/>
+    <mass value="27.331661890168725"/>
+    <inertia ixx="0.076348" iyy="0.188917" izz="0.220203" ixy="-0.003157" iyz="-0.000445" ixz="-0.004204"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax1_ax2_link_1">
+  <inertial>
+    <origin xyz="-0.02615379428226047 0.000241561861043145 0.0712127331449195" rpy="0 0 0"/>
+    <mass value="7.902676304338557"/>
+    <inertia ixx="0.013853" iyy="0.035493" izz="0.026352" ixy="2e-06" iyz="-4e-06" ixz="-0.001749"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.099" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/ax1_ax2_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.099" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/ax1_ax2_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax2_ax3_link_1">
+  <inertial>
+    <origin xyz="-0.2003768902953656 -0.03475000001361142 -0.005668936335802621" rpy="0 0 0"/>
+    <mass value="5.606060961398385"/>
+    <inertia ixx="0.004268" iyy="0.035534" izz="0.033851" ixy="-0.0" iyz="0.0" ixz="0.003135"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.035 -0.20175" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/ax2_ax3_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.035 -0.20175" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/ax2_ax3_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax3_ax4_link_1">
+  <inertial>
+    <origin xyz="-0.1815995956222311 -0.02800000031186195 0.004785398729073936" rpy="0 0 0"/>
+    <mass value="5.029257545475572"/>
+    <inertia ixx="0.003664" iyy="0.024688" izz="0.022977" ixy="-0.0" iyz="0.0" ixz="0.002776"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.26953 -0.02825 -0.218" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/ax3_ax4_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.26953 -0.02825 -0.218" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/ax3_ax4_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="finger_2_1">
+  <inertial>
+    <origin xyz="0.008500327798317775 -0.001379936753068814 -0.06419687236341155" rpy="0 0 0"/>
+    <mass value="0.32286782976251777"/>
+    <inertia ixx="0.000344" iyy="0.00035" izz="3.6e-05" ixy="6e-06" iyz="-1.3e-05" ixz="-7e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.493285 -0.042298 -0.0944" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/finger_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.493285 -0.042298 -0.0944" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/finger_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="finger_1_1">
+  <inertial>
+    <origin xyz="-0.005445215086459232 -0.006671734606918209 -0.06419687236341161" rpy="0 0 0"/>
+    <mass value="0.32286782976251777"/>
+    <inertia ixx="0.000344" iyy="0.00035" izz="3.6e-05" ixy="-6e-06" iyz="1.2e-05" ixz="-8e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.479429 0.033899 -0.0944" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/finger_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.479429 0.033899 -0.0944" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/finger_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="finger_3_1">
+  <inertial>
+    <origin xyz="-0.0030558127093592846 -0.007948789267048412 -0.0641968729634185" rpy="0 0 0"/>
+    <mass value="0.32286782976251777"/>
+    <inertia ixx="0.000353" iyy="0.00034" izz="3.6e-05" ixy="-0.0" iyz="0.0" ixz="1.5e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.552345 -0.0082 -0.0944" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/finger_3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.552345 -0.0082 -0.0944" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/finger_3_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ax4_palm_link_1">
+  <inertial>
+    <origin xyz="0.0007655202443410669 -0.02900522250613477 -0.07898105623650764" rpy="0 0 0"/>
+    <mass value="2.1655851659298966"/>
+    <inertia ixx="0.009039" iyy="0.008178" izz="0.002376" ixy="-2e-06" iyz="-3.6e-05" ixz="-1.4e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.50822 -0.02825 -0.24325" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/ax4_palm_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.50822 -0.02825 -0.24325" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://PutArm_description/meshes/ax4_palm_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 1" type="continuous">
+  <origin xyz="0.0 0.0 0.099" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="ax1_ax2_link_1"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+</joint>
+
+<joint name="Revolute 2" type="continuous">
+  <origin xyz="0.0 0.035 0.10275" rpy="0 0 0"/>
+  <parent link="ax1_ax2_link_1"/>
+  <child link="ax2_ax3_link_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="Revolute 3" type="continuous">
+  <origin xyz="-0.26953 -0.00675 0.01625" rpy="0 0 0"/>
+  <parent link="ax2_ax3_link_1"/>
+  <child link="ax3_ax4_link_1"/>
+  <axis xyz="-0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 4" type="continuous">
+  <origin xyz="-0.23869 0.0 0.02525" rpy="0 0 0"/>
+  <parent link="ax3_ax4_link_1"/>
+  <child link="ax4_palm_link_1"/>
+  <axis xyz="0.0 1.0 -0.0"/>
+</joint>
+
+
+<joint name="Revolute f_2" type="continuous">
+  <origin xyz="0.014935 0.014048 -0.14885" rpy="0 0 0"/>
+  <parent link="ax4_palm_link_1"/>
+  <child link="finger_2_1"/>
+  <axis xyz="0.866025 -0.5 -0.0"/>
+</joint>
+
+<joint name="Revolute f_1" type="continuous">
+  <origin xyz="0.028791 -0.062149 -0.14885" rpy="0 0 0"/>
+  <parent link="ax4_palm_link_1"/>
+  <child link="finger_1_1"/>
+  <axis xyz="-0.866025 -0.5 -0.0"/>
+</joint>
+
+<joint name="Revolute f_3" type="continuous">
+  <origin xyz="-0.044125 -0.02005 -0.14885" rpy="0 0 0"/>
+  <parent link="ax4_palm_link_1"/>
+  <child link="finger_3_1"/>
+  <axis xyz="0.0 -1.0 -0.0"/>
+</joint>
+
+</robot>

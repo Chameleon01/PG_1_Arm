@@ -1,0 +1,10 @@
+# Default initial positions for robot's ros2_control fake system
+
+initial_positions:
+  Revolute 1: 0
+  Revolute 2: 0.785398
+  Revolute 3: -1.5708
+  Revolute 4: 0
+  Revolute f_1: 0
+  Revolute f_2: 0
+  Revolute f_3: 0

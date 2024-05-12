@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+
+    <!-- This is an example of a URDF. -->
+    <!-- As we move through the file, new things to note will be pointed out. -->
+    <!-- It's not meant an example of GOOD design, but an example of some of the various features of URDF/xacro. -->
+
+
+
+    <!-- This will include all the contents of example_include.xacro first. Go check it out! -->
+    <xacro:include filename="materials.xacro" />
+    <xacro:property name="PI" value="3.141592653589793"/>
+
+    <!-- This first link called "world" is empty -->
+    <link name="world"></link>
+
+
+    <!-- A simple fixed joint from our empty world link, to our base. -->
+    <!-- The base origin is offset from the world origin. -->
+    <joint name="base_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="base_link"/>        
+    </joint>
+
+
+    <!-- base_link is a large rectangular plate. Some things to note: -->
+    <!-- - We set the visual origin Z to half the box height, so that the link origin sits at the bottom of the box -->
+    <!-- - We set the collision to be identical to the visual -->
+    <!-- - We specified the colour manually (but still need to enter a name) -->
+    <!-- - We specified all the inertial parameters manually -->
+    <link name="base_link">
+    <inertial>
+        <origin xyz="-0.09564368830443622 0.0012112707272121106 0.05097667978773091" rpy="0 0 0"/>
+        <mass value="27.331661890168725"/>
+        <inertia ixx="0.076348" iyy="0.188917" izz="0.220203" ixy="-0.003157" iyz="-0.000445" ixz="-0.004204"/>
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://urdf_example/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://urdf_example/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+
+
+    <!-- slider_joint lets slider_link move back and forth along the top of the base in one dimension.  -->
+    <!-- - Origin is set to one of the top edges of the base_link box, so that our link skims across the top  -->
+    <!-- - It moves along the X axis -->
+    <!-- - We need to specify limits for the motion -->
+    <joint name="Axis_1" type="continuous">
+        <origin xyz="0.0 0.0 0.099" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="ax1_ax2_link"/>
+        <axis xyz="0.0 0.0 -1.0"/>
+    </joint>
+
+
+    <!-- slider_link is the box skimming across the top of the base. Its parameters are similar to the base_link, however: -->
+    <!-- - Instead of explicitly describing a colour, it uses the named material "blue". It knows about "blue" that material was included in example_include.xacro. -->
+    <!-- - Instead of explicitly describing the inertia, we use a macro that was defined in the example_include.xacro -->
+
+    <link name="ax1_ax2_link">
+    <inertial>
+        <origin xyz="-0.026153794282260473 0.000241561861043143 0.0712127331449195" rpy="0 0 0"/>
+        <mass value="7.902676304338557"/>
+        <inertia ixx="0.013853" iyy="0.035493" izz="0.026352" ixy="2e-06" iyz="-4e-06" ixz="-0.001749"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.0 -0.0 -0.099" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://urdf_example/meshes/1_AXIS_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+    </visual>
+    <collision>
+        <origin xyz="-0.0 -0.0 -0.099" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://urdf_example/meshes/1_AXIS_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+
+
+    <!-- arm_joint describes the rotation of the arm and is centred around the top corner of the slider box. -->
+    <!-- - The axis of rotation is -1 in Y, so that positive is "up" -->
+    <!-- - The upper limit uses xacro's mathematical features -->
+    <joint name="Axis_2" type="revolute">
+        <origin xyz="0.0 0.035 0.10275" rpy="0 0 0"/>
+        <parent link="ax1_ax2_link"/>
+        <child link="ax2_ax3_link"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="${-PI / 3.0}" upper="${PI/2.0}" effort="30" velocity="1.0"/>
+    </joint>
+
+
+    <!-- arm_link describes the arm -->
+    <!-- - We use the "property" feature to define the arm length and radius and use them multiple times -->
+    <!-- - The visual/collision origin is set to halfway along the length (similar to the box), but also with a rotation (again using the mathematical features). -->
+    <!--   This is because the cylinder extends along the Z axis by default, but we want it to be along the X axis (when the joint is at 0) -->
+
+    <xacro:property name="arm_length" value="1" />
+    <xacro:property name="arm_radius" value="0.1" />
+    <link name="ax2_ax3_link">
+    <inertial>
+        <origin xyz="-0.005668936335802665 -0.03475000001361264 0.2003768902953659" rpy="0 0 0"/>
+        <mass value="5.606060961398385"/>
+        <inertia ixx="0.033851" iyy="0.035534" izz="0.004268" ixy="0.0" iyz="0.0" ixz="-0.003135"/>
+    </inertial>
+    <visual>
+        <origin xyz="-0.0 -0.035 -0.20175" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://urdf_example/meshes/2_AXIS_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+    </visual>
+    <collision>
+        <origin xyz="-0.0 -0.035 -0.20175" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="package://urdf_example/meshes/2_AXIS_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    </link>
+
+
+    <!-- camera_joint describes where the camera is relative to the arm -->
+    <!-- - Even though the camera isn't moving relative to the arm, it will probably be helpful to have its own link/frame rather than just adding more visuals to the arm -->
+    <!-- - For this example, the camera_link origin will be at the centre of the camera's "sensor" -->
+    <joint name="Axis_3" type="revolute">
+        <origin xyz="0.01625 -0.00675 0.26953" rpy="0 0 0"/>
+        <parent link="ax2_ax3_link"/>
+        <child link="ax3_ax4_link"/>
+        <axis xyz="-0.0 -1.0 -0.0"/>
+        <limit lower="${-PI / 3.0}" upper="${PI/2.0}" effort="30" velocity="1.0"/>
+    </joint>
+
+
+    <!-- camera_link describes the camera at the end of the arm -->
+    <!-- - It has multiple visual elements, which ultimately get combined together -->
+    <!-- - Even if we specify different materials, RViz will just colour them all the same as the first -->
+    <!-- - Although we could also specify multiple collision geometries, instead we just use a single box that encompasses the whole camera -->
+    <link name="ax3_ax4_link">
+        <inertial>
+            <origin xyz="0.18159959562223355 -0.02800000031186445 -0.004785398729074464" rpy="0 0 0"/>
+            <mass value="5.029257545475572"/>
+            <inertia ixx="0.003664" iyy="0.024688" izz="0.022977" ixy="0.0" iyz="-0.0" ixz="0.002776"/>
+        </inertial>
+        <visual>
+            <origin xyz="-0.01625 -0.02825 -0.47128" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://urdf_example/meshes/3_AXIS_3_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="-0.01625 -0.02825 -0.47128" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://urdf_example/meshes/3_AXIS_3_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="Axis_4" type="revolute">
+        <origin xyz="0.23869 0.0 -0.02525" rpy="0 0 0"/>
+        <parent link="ax3_ax4_link"/>
+        <child link="ax4_hand_link"/>
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="${-PI*5.0 / 9.0}" upper="${PI/3.0}" effort="30" velocity="1.0"/>
+    </joint>
+
+
+    <link name="ax4_hand_link">
+        <inertial>
+            <origin xyz="4.5630166312093934e-14 -0.028000000019999895 -0.04743354311576614" rpy="0 0 0"/>
+            <mass value="0.20316593653715326"/>
+            <inertia ixx="0.000474" iyy="0.000374" izz="0.000167" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+        </inertial>
+        <visual>
+            <origin xyz="-0.25494 -0.02825 -0.44603" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://urdf_example/meshes/4_AXIS_4_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin xyz="-0.25494 -0.02825 -0.44603" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://urdf_example/meshes/4_AXIS_4_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+</robot>

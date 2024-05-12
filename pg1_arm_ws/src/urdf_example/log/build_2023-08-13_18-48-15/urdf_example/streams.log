@@ -1,0 +1,12 @@
+[0.020s] Invoking command in '/home/putacrot/Documents/Putarm/urdf_example/build/urdf_example': CMAKE_PREFIX_PATH=/home/putacrot/Documents/Putarm/PutArm_ros2/install/urdf_publisher:/opt/ros/humble /usr/bin/cmake --build /home/putacrot/Documents/Putarm/urdf_example/build/urdf_example -- -j4 -l4
+[0.028s] [0mCMake Error: The current CMakeCache.txt directory /home/putacrot/Documents/Putarm/urdf_example/build/urdf_example/CMakeCache.txt is different than the directory /home/pat-server/Documents/urdf_example/build/urdf_example where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m
+[0.060s] Invoked command in '/home/putacrot/Documents/Putarm/urdf_example/build/urdf_example' returned '0': CMAKE_PREFIX_PATH=/home/putacrot/Documents/Putarm/PutArm_ros2/install/urdf_publisher:/opt/ros/humble /usr/bin/cmake --build /home/putacrot/Documents/Putarm/urdf_example/build/urdf_example -- -j4 -l4
+[0.093s] Invoking command in '/home/putacrot/Documents/Putarm/urdf_example/build/urdf_example': CMAKE_PREFIX_PATH=/home/putacrot/Documents/Putarm/PutArm_ros2/install/urdf_publisher:/opt/ros/humble /usr/bin/cmake --install /home/putacrot/Documents/Putarm/urdf_example/build/urdf_example
+[0.102s] -- Install configuration: ""
+[0.102s] [31mCMake Error at cmake_install.cmake:46 (file):
+[0.102s]   file INSTALL cannot find
+[0.102s]   "/home/pat-server/Documents/urdf_example/description": No such file or
+[0.102s]   directory.
+[0.102s] 
+[0.102s] [0m
+[0.104s] Invoked command in '/home/putacrot/Documents/Putarm/urdf_example/build/urdf_example' returned '1': CMAKE_PREFIX_PATH=/home/putacrot/Documents/Putarm/PutArm_ros2/install/urdf_publisher:/opt/ros/humble /usr/bin/cmake --install /home/putacrot/Documents/Putarm/urdf_example/build/urdf_example

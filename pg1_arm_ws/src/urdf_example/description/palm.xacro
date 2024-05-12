@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<robot name="palm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find palm_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find palm_description)/urdf/palm.trans" />
+<xacro:include filename="$(find palm_description)/urdf/palm.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0009965179098793573 0.0004564067413093199 0.16780013670044158" rpy="0 0 0"/>
+    <mass value="1.212734782851092"/>
+    <inertia ixx="0.000593" iyy="0.000552" izz="0.000593" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="finger3_link_1">
+  <inertial>
+    <origin xyz="0.008411302808232435 0.0013276375339530619 -0.06419673638030476" rpy="0 0 0"/>
+    <mass value="0.32286782976251777"/>
+    <inertia ixx="0.000344" iyy="0.00035" izz="3.6e-05" ixy="-6e-06" iyz="1.2e-05" ixz="-8e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.015931 0.041692 -0.01895" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/finger3_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.015931 0.041692 -0.01895" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/finger3_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="finger1_link_1">
+  <inertial>
+    <origin xyz="-0.005356154306990921 0.006620435387802166 -0.06419673578029789" rpy="0 0 0"/>
+    <mass value="0.32286782976251777"/>
+    <inertia ixx="0.000344" iyy="0.00035" izz="3.6e-05" ixy="6e-06" iyz="-1.3e-05" ixz="-7e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.029788 -0.034504 -0.01895" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/finger1_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.029788 -0.034504 -0.01895" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/finger1_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="finger2_link_1">
+  <inertial>
+    <origin xyz="-0.00305529481466775 -0.007948417126177597 -0.06419673578029773" rpy="0 0 0"/>
+    <mass value="0.32286782976251777"/>
+    <inertia ixx="0.000353" iyy="0.00034" izz="3.6e-05" ixy="-0.0" iyz="0.0" ixz="1.5e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.043129 -0.008406 -0.01895" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/finger2_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.043129 -0.008406 -0.01895" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/finger2_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="axis4_hand_link_1">
+  <inertial>
+    <origin xyz="0.0007650381390323885 -0.02900485036526382 -0.0789809196533943" rpy="0 0 0"/>
+    <mass value="2.1655851659298966"/>
+    <inertia ixx="0.009039" iyy="0.008178" izz="0.002376" ixy="-2e-06" iyz="-3.6e-05" ixz="-1.4e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.000997 -0.028456 -0.1678" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/axis4_hand_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.000997 -0.028456 -0.1678" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://palm_description/meshes/axis4_hand_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 8" type="continuous">
+  <origin xyz="0.014934 -0.070148 -0.14885" rpy="0 0 0"/>
+  <parent link="axis4_hand_link_1"/>
+  <child link="finger3_link_1"/>
+  <axis xyz="0.866025 0.5 -0.0"/>
+</joint>
+
+<joint name="Revolute 9" type="continuous">
+  <origin xyz="0.028791 0.006048 -0.14885" rpy="0 0 0"/>
+  <parent link="axis4_hand_link_1"/>
+  <child link="finger1_link_1"/>
+  <axis xyz="-0.866025 0.5 -0.0"/>
+</joint>
+
+<joint name="Revolute 10" type="continuous">
+  <origin xyz="-0.044126 -0.02005 -0.14885" rpy="0 0 0"/>
+  <parent link="axis4_hand_link_1"/>
+  <child link="finger2_link_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Revolute 11" type="continuous">
+  <origin xyz="0.000997 0.028456 0.1678" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="axis4_hand_link_1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+</joint>
+
+</robot>
